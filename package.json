@@ -3,7 +3,7 @@
   "homepage": "image-slideshow",
   "description": "",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "dist/app/main.js",
   "repository": {
     "type": "git",
     "url": ""
@@ -22,8 +22,11 @@
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.27.3",
+    "electron": "^1.6.2",
     "jest": "^19.0.2",
+    "json-loader": "^0.5.4",
     "source-map-loader": "^0.2.0",
     "style-loader": "^0.16.0",
     "webpack": "^1.14.0"
