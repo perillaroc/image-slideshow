@@ -32,5 +32,6 @@ module.exports = {
     },
     module: {
         loaders: loaders
-    }
+    },
+    target: 'electron-renderer'
 };

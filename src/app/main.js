@@ -16,7 +16,7 @@ function createWindow () {
         slashes: true
     }));
 
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
@@ -29,9 +29,9 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-let image_list = [];
+global.image_list = [];
 app.on('ready', function(){
-    image_list = [];
+    global.image_list = [];
 
     jsdom.env({
         url: "http://www.netbian.com/",
@@ -64,7 +64,7 @@ app.on('ready', function(){
                                     // console.log(window.document.body.innerHTML);
                                     return;
                                 }
-                                image_list.push({
+                                global.image_list.push({
                                     src: image_node.src,
                                     title: image_node.title
                                 });
