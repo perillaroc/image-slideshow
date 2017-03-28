@@ -10,6 +10,9 @@
   },
   "scripts": {
     "build": "webpack",
+    "build-main": "webpack --config webpack.electron-main.config.js",
+    "build-render": "webpack --config webpack.electron-render.config.js",
+    "run": "node_modules/.bin/electron .",
     "test": "jest"
   },
   "author": {
@@ -33,5 +36,9 @@
   },
   "jest": {
     "testRegex": ".*-test.js"
+  },
+  "dependencies": {
+    "jsdom": "^9.12.0",
+    "request": "^2.81.0"
   }
 }
