@@ -8,7 +8,8 @@ const {app, BrowserWindow} = electron;
 let mainWindow;
 
 function createWindow () {
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({width: 1920, height: 1080});
+    mainWindow.maximize();
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
@@ -16,7 +17,7 @@ function createWindow () {
         slashes: true
     }));
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
