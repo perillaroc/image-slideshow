@@ -13,7 +13,11 @@ document.body.addEventListener('click', function(event){
         return
     }
     index = Math.floor(Math.random() * image_count);
-    let background_image = "url(" + image_list[index].src + ")";
-    console.log(background_image);
-    document.body.style.backgroundImage = background_image;
+    let image_url = image_list[index].src;
+    console.log(image_url);
+    let background_image = new Image();
+    background_image.onload = function(event){
+        document.body.style.backgroundImage = "url("+ this.src +")";
+    };
+    background_image.src = image_url;
 });
