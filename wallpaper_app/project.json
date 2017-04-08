@@ -1,11 +1,11 @@
 {
 	"description" : "An image slide show app.",
 	"file" : "electron.exe",
-	"general" : 
+	"general" :
 	{
-		"properties" : 
+		"properties" :
 		{
-			"schemecolor" : 
+			"schemecolor" :
 			{
 				"order" : 0,
 				"text" : "ui_browse_properties_scheme_color",
