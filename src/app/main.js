@@ -66,7 +66,7 @@ app.on('ready', function(){
                                 url: href,
                                 done: function (err, window) {
                                     let image_down_link_node = window.document.querySelector('div.pic-down>a');
-                                    if (image_down_link_node == null) {
+                                    if (image_down_link_node === null) {
                                         console.log("error:", href);
                                         return;
                                     }

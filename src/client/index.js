@@ -9,7 +9,7 @@ window.addEventListener('load', function(event){
 document.body.addEventListener('click', function(event){
     const image_list = electron.remote.getGlobal('image_list');
     let image_count = image_list.length;
-    if(image_count == 0 ){
+    if(image_count === 0 ){
         return
     }
     index = Math.floor(Math.random() * image_count);
