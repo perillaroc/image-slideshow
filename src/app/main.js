@@ -1,7 +1,17 @@
 const electron = require('electron');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
+const yaml = require('js-yaml');
 const jsdom = require('jsdom');
+
+let url_list = [];
+try {
+    let conf_doc = yaml.safeLoad(fs.readFileSync(path.join(__dirname, './conf/conf.yaml'), 'utf8'));
+    url_list = conf_doc['wallpaper_website']['url_list'];
+} catch (e) {
+    console.log(e);
+}
 
 const {app, BrowserWindow} = electron;
 
@@ -31,24 +41,9 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 global.image_list = [];
+
 app.on('ready', function(){
     global.image_list = [];
-
-    let url_list = [
-        "http://www.netbian.com/fengjing/",
-        "http://www.netbian.com/fengjing/index_2.htm",
-        "http://www.netbian.com/fengjing/index_3.htm",
-        "http://www.netbian.com/fengjing/index_4.htm",
-        "http://www.netbian.com/huahui/",
-        "http://www.netbian.com/huahui/index_2.htm",
-        "http://www.netbian.com/huahui/index_3.htm",
-        "http://www.netbian.com/huahui/index_4.htm",
-        "http://www.netbian.com/dongwu/",
-        "http://www.netbian.com/dongwu/index_2.htm",
-        "http://www.netbian.com/dongwu/index_3.htm",
-        "http://www.netbian.com/dongwu/index_4.htm"
-
-    ];
 
     url_list.forEach(function(url){
         jsdom.env({
@@ -88,7 +83,7 @@ app.on('ready', function(){
                                                 src: image_node.src,
                                                 title: image_node.title
                                             });
-                                            console.log("table#endimg td>img is ok", href);
+                                            //console.log("table#endimg td>img is ok", href);
                                         }
                                     });
                                 }
