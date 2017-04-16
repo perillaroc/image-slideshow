@@ -8,7 +8,7 @@ const jsdom = require('jsdom');
 let url_list = [];
 try {
     let conf_doc = yaml.safeLoad(fs.readFileSync(path.join(__dirname, './conf/conf.yaml'), 'utf8'));
-    url_list = conf_doc['wallpaper_website']['url_list'];
+    url_list = conf_doc['wallpaper']['website']['url_list'];
 } catch (e) {
     console.log(e);
 }

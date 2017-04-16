@@ -1,14 +1,15 @@
-wallpaper_website:
-  url_list:
-  - http://www.netbian.com/fengjing/
-  - http://www.netbian.com/fengjing/index_2.htm
-  - http://www.netbian.com/fengjing/index_3.htm
-  - http://www.netbian.com/fengjing/index_4.htm
-  - http://www.netbian.com/huahui/
-  - http://www.netbian.com/huahui/index_2.htm
-  - http://www.netbian.com/huahui/index_3.htm
-  - http://www.netbian.com/huahui/index_4.htm
-  - http://www.netbian.com/dongwu/
-  - http://www.netbian.com/dongwu/index_2.htm
-  - http://www.netbian.com/dongwu/index_3.htm
-  - http://www.netbian.com/dongwu/index_4.htm
+wallpaper:
+  website:
+    url_list:
+    - http://www.netbian.com/fengjing/
+    - http://www.netbian.com/fengjing/index_2.htm
+    - http://www.netbian.com/fengjing/index_3.htm
+    - http://www.netbian.com/fengjing/index_4.htm
+    - http://www.netbian.com/huahui/
+    - http://www.netbian.com/huahui/index_2.htm
+    - http://www.netbian.com/huahui/index_3.htm
+    - http://www.netbian.com/huahui/index_4.htm
+    - http://www.netbian.com/dongwu/
+    - http://www.netbian.com/dongwu/index_2.htm
+    - http://www.netbian.com/dongwu/index_3.htm
+    - http://www.netbian.com/dongwu/index_4.htm
