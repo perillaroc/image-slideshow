@@ -2,8 +2,10 @@ let electron = require('electron');
 
 let index = 0;
 
+const welcome_background = electron.remote.getGlobal('welcome_background');
+
 window.addEventListener('load', function(event){
-    document.body.style.backgroundImage = "url(http://img.netbian.com/file/2017/0321/a20cef8314d7f53023fb431acf1b9553.jpg)";
+    document.body.style.backgroundImage = "url(" + welcome_background +")";
 });
 
 document.body.addEventListener('click', function(event){

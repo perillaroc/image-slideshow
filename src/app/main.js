@@ -6,9 +6,11 @@ const yaml = require('js-yaml');
 const jsdom = require('jsdom');
 
 let url_list = [];
+let welcome_background = null;
 try {
     let conf_doc = yaml.safeLoad(fs.readFileSync(path.join(__dirname, './conf/conf.yaml'), 'utf8'));
     url_list = conf_doc['wallpaper']['website']['url_list'];
+    welcome_background = conf_doc['wallpaper']['welcome']['background'];
 } catch (e) {
     console.log(e);
 }
@@ -44,6 +46,7 @@ global.image_list = [];
 
 app.on('ready', function(){
     global.image_list = [];
+    global.welcome_background = welcome_background;
 
     url_list.forEach(function(url){
         jsdom.env({
