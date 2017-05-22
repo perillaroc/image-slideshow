@@ -6,14 +6,16 @@ let CopyWebPackPlugin = require('copy-webpack-plugin');
 let nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
 let entry= {
-    // index: './app/main.js'
+    index: './src/app/main.js'
 };
 
-let loaders= {
-    loaders: [
+let modules= {
+    rules: [
         {
             test: /\.json$/,
-            loader: 'json-loader'
+            use: [
+                { loader: 'json-loader' }
+            ]
         }
     ]
 };
@@ -33,10 +35,10 @@ module.exports = {
     entry: entry,
     output: {
         path: path.join(__dirname, './dist/app'),
-        filename: "main.js",
+        filename: "main.bundle.js",
         sourceMapFilename: '[file].map'
     },
-    module: loaders,
+    module: modules,
     externals: externals,
     plugins: plugins,
     resolve: resolve,

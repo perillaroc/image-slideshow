@@ -1,25 +1,50 @@
 var path = require('path');
 
 
-let loaders= [
+let rules= [
     {
         test: /\.js$/,
-        loaders: [ 'babel' ],
+        use: [
+            {loader: 'babel-loader'}
+        ],
         exclude: /node_modules/,
         include: __dirname
     },
     {
         test: /\.less$/,
-        loader: "style!css!less"
+        use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'less-loader' }
+        ]
     },
     {
         test: /\.scss/,
-        loader: "style!css!sass"
+        use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'sass-loader' }
+        ]
     },
     {
         test: /\.css/,
-        loader: "style!css"
-    }
+        use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' }
+        ]
+    },
+    {
+        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'url-loader?limit=10000',
+    },
+    {
+        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        use: 'file-loader',
+    },
+    {
+        test: /bootstrap-sass\/assets\/javascripts\//,
+        use: 'imports-loader?jQuery=jquery'
+    },
 ];
 
 module.exports = {
@@ -31,7 +56,7 @@ module.exports = {
         filename: '[name].entry.js'
     },
     module: {
-        loaders: loaders
+        rules: rules
     },
     target: 'electron-renderer'
 };

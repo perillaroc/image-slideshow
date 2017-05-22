@@ -1,9 +1,29 @@
 <html>
 <head>
     <title>Image Slideshow</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<div id="container"></div>
+
+<div class="site-wrapper">
+    <div id="container"></div>
+    <div class="menu-container">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="drop_menu_settings"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Settings
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="drop_menu_settings">
+                <li><a href="#" id="change_background_button">Change Background</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#" id="about_button">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <script src="./scripts/index.entry.js"></script>
 </body>
 </html>

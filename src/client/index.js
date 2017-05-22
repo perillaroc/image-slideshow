@@ -1,4 +1,7 @@
 let electron = require('electron');
+global.jQuery = require('jquery');
+require('bootstrap-loader');
+require('./main.css');
 
 let index = 0;
 
