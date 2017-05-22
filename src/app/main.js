@@ -5,6 +5,8 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const jsdom = require('jsdom');
 
+const PouchDB = require('pouchdb');
+
 let url_list = [];
 let welcome_background = null;
 try {
@@ -14,6 +16,14 @@ try {
 } catch (e) {
     console.log(e);
 }
+
+let user_data_db = new PouchDB(path.join(__dirname, '../data/user_data_db'));
+
+user_data_db.get('welcome').then(function (doc) {
+    welcome_background = doc.background;
+}).catch(function (err) {
+    console.log(err);
+});
 
 const {app, BrowserWindow} = electron;
 
@@ -106,6 +116,23 @@ app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit()
     }
+
+    let image_count = global.image_list.length;
+    if(image_count === 0 ){
+        return
+    }
+    let index = Math.floor(Math.random() * image_count);
+    let image_url = global.image_list[index].src;
+
+    user_data_db.put({
+        '_id': 'welcome',
+        'background': image_url
+    }).then(function (response) {
+        // handle response
+        console.log(response)
+    }).catch(function (err) {
+        console.log(err);
+    });
 });
 
 app.on('activate', function () {

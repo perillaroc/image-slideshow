@@ -5,7 +5,7 @@ require('./main.css');
 
 let index = 0;
 
-const welcome_background = electron.remote.getGlobal('welcome_background');
+let welcome_background = electron.remote.getGlobal('welcome_background');
 
 window.addEventListener('load', function(event){
     document.body.style.backgroundImage = "url(" + welcome_background +")";
