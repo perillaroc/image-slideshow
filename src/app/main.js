@@ -120,14 +120,15 @@ app.on('window-all-closed', function () {
     let image_url = global.image_list[index].src;
 
 
-    console.log('window-all-closed update');
-    user_data_db.update({_id: 'welcome'}, { $set:{'background': image_url}},{ upsert: true }, function(err, numReplaced){
+    console.log('window-all-closed update', image_url);
+    user_data_db.update({_id: 'welcome'}, {background: image_url}, { upsert: true }, function(err, numReplaced){
         console.log(err, numReplaced);
+        if (process.platform !== 'darwin') {
+            app.quit()
+        }
     });
 
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+
 });
 
 app.on('activate', function () {
