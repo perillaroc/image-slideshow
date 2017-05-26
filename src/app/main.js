@@ -5,7 +5,7 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const jsdom = require('jsdom');
 
-const PouchDB = require('pouchdb');
+const Datastore = require('nedb');
 
 let url_list = [];
 let welcome_background = null;
@@ -17,13 +17,7 @@ try {
     console.log(e);
 }
 
-let user_data_db = new PouchDB(path.join(__dirname, '../data/user_data_db'));
-
-user_data_db.get('welcome').then(function (doc) {
-    welcome_background = doc.background;
-}).catch(function (err) {
-    console.log(err);
-});
+let user_data_db = new Datastore({ filename: path.join(__dirname, '../data/user_data_db'), autoload: true });
 
 const {app, BrowserWindow} = electron;
 
@@ -109,14 +103,15 @@ app.on('ready', function(){
         });
     });
 
-    createWindow();
+    user_data_db.find({_id: 'welcome'}, function(err, docs) {
+        console.log(err, docs);
+        global.welcome_background = docs[0].background;
+        createWindow();
+    });
 });
 
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
-
+    console.log('window-all-closed');
     let image_count = global.image_list.length;
     if(image_count === 0 ){
         return
@@ -124,15 +119,15 @@ app.on('window-all-closed', function () {
     let index = Math.floor(Math.random() * image_count);
     let image_url = global.image_list[index].src;
 
-    user_data_db.put({
-        '_id': 'welcome',
-        'background': image_url
-    }).then(function (response) {
-        // handle response
-        console.log(response)
-    }).catch(function (err) {
-        console.log(err);
+
+    console.log('window-all-closed update');
+    user_data_db.update({_id: 'welcome'}, { $set:{'background': image_url}},{ upsert: true }, function(err, numReplaced){
+        console.log(err, numReplaced);
     });
+
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 });
 
 app.on('activate', function () {
